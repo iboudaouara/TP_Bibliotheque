@@ -1,4 +1,4 @@
-package com.eq3.bibliotheque;
+package com.eq3.bibliotheque.activities;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.eq3.bibliotheque.R;
 
 public class MainActivity extends AppCompatActivity {
 
