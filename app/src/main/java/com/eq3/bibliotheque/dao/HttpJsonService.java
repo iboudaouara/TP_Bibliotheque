@@ -22,13 +22,25 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
+/**
+ * Service pour interagir avec le serveur JSON via des requêtes HTTP.
+ * Permet de récupérer, ajouter et supprimer des livres et obtenir des informations sur les comptes utilisateurs.
+ *
+ */
 public class HttpJsonService {
 
     private final String URL_POINT_ENTREE = "http://10.0.2.2:3000";
-    //valeurs concstantes à utiliser pour générer un id aléatoire pour chaque livre
+    // Valeurs constantes à utiliser pour générer un ID aléatoire pour chaque livre
     private static final String CHARACTERS = "0123456789abcdef";
     private static final SecureRandom RANDOM = new SecureRandom(); // Création de l'instance SecureRandom
 
+    /**
+     * Récupère la liste des livres depuis le serveur JSON.
+     *
+     * @return Une liste d'objets Livre.
+     * @throws IOException En cas d'erreur de communication avec le serveur.
+     * @throws JSONException En cas d'erreur de traitement JSON.
+     */
     public List<Livre> getLivres() throws IOException, JSONException {
 
         // Création client HTTP
@@ -59,6 +71,14 @@ public class HttpJsonService {
         return null;
     }
 
+    /**
+     * Supprime un livre du serveur JSON en utilisant son ID.
+     *
+     * @param livre L'objet Livre à supprimer.
+     * @return true si la suppression est réussie, false sinon.
+     * @throws IOException En cas d'erreur de communication avec le serveur.
+     * @throws JSONException En cas d'erreur de traitement JSON.
+     */
     public boolean supprimerLivre(Livre livre) throws IOException, JSONException {
 
         // Création client HTTP
@@ -74,6 +94,14 @@ public class HttpJsonService {
         return response.code() == 200;
     }
 
+    /**
+     * Ajoute un livre au serveur JSON.
+     *
+     * @param livre L'objet Livre à ajouter.
+     * @return true si l'ajout est réussi, false sinon.
+     * @throws IOException En cas d'erreur de communication avec le serveur.
+     * @throws JSONException En cas d'erreur de traitement JSON.
+     */
     public boolean ajouterLivre(Livre livre) throws IOException, JSONException {
 
         // Création client HTTP
@@ -106,6 +134,12 @@ public class HttpJsonService {
         return response.code() == 201; // Code HTTP pour création réussie
     }
 
+    /**
+     * Génère un ID aléatoire pour un livre.
+     *
+     * @param tailleId La taille de l'ID à générer.
+     * @return L'ID généré.
+     */
     private String genereIdAleatoire(int tailleId) {
 
         StringBuilder id = new StringBuilder(tailleId);
@@ -115,6 +149,13 @@ public class HttpJsonService {
         return id.toString();
     }
 
+    /**
+     * Récupère la liste des comptes utilisateurs depuis le serveur JSON.
+     *
+     * @return Une liste d'objets Utilisateur.
+     * @throws IOException En cas d'erreur de communication avec le serveur.
+     * @throws JSONException En cas d'erreur de traitement JSON.
+     */
     public List<Utilisateur> getComptes() throws IOException, JSONException {
 
         // Création client HTTP
