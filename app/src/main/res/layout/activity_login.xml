@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,6 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/border_connexion"
+        android:padding="7dp"
         android:text="Gestion de bibliotheque virtuelle"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -50,6 +53,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="6dp"
             android:text="Mot de passe"
             android:textAlignment="center"
             android:textSize="22sp" />
@@ -69,6 +73,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Connexion"
+            android:textColor="@color/white"
+            android:textColorLink="#0C21A6"
             android:textSize="20sp" />
     </LinearLayout>
 
