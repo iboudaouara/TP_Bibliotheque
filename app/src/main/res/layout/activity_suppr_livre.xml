@@ -16,14 +16,17 @@
 
         <TextView
             android:id="@+id/txtSupprimerLivre"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/border"
             android:padding="10dp"
             android:text="Supprimer un livre"
             android:textAlignment="center"
+            android:textColor="#086AFF"
             android:textSize="18sp"
             android:textStyle="bold" />
+
     </LinearLayout>
 
     <Space
@@ -32,10 +35,60 @@
         android:layout_weight="0.2" />
 
     <LinearLayout
+        android:id="@+id/llRechercheISBN"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtRechercheISBN"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="ISBN: "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtRechercheISBN"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bordure_recherche_isbn"
+            android:drawableEnd="@android:drawable/ic_menu_search"
+            android:ems="10"
+            android:hint="Rechercher..."
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:background="@drawable/bordure_bleu"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="TITRE DU LIVRE"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:id="@+id/llTitre"
@@ -43,29 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtTitre"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Titre"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/edtTitre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/border"
-                android:ems="10"
-                android:hint="Titre"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:paddingLeft="10dp"
-                android:textSize="20sp" />
-        </LinearLayout>
+            android:orientation="horizontal" />
 
         <LinearLayout
             android:id="@+id/llAuteur"
@@ -103,30 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtISBN"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="ISBN"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/edtISBN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/border"
-                android:ems="10"
-                android:hint="ISBN"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:paddingLeft="10dp"
-                android:textSize="20sp"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
+            android:orientation="horizontal" />
 
         <LinearLayout
             android:id="@+id/llMaisonEdition"
@@ -228,7 +236,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
         android:orientation="vertical">
 
         <LinearLayout
