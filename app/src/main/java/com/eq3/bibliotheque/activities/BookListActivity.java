@@ -25,7 +25,7 @@ public class BookListActivity extends AppCompatActivity implements View.OnClickL
     private ArrayList<Livre> bookList;
     private static final String TAG = "BookListActivity";
     private static final int REQUEST_CODE_BOOK_DETAIL = 1;
-    private BookListPresentateur bookPresenter;
+    private BookListPresentateur bookPresentateur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class BookListActivity extends AppCompatActivity implements View.OnClickL
         bookAdapter = new BookAdapter(this, bookList);
         bookListView.setAdapter(bookAdapter);
 
-        bookPresenter = new BookListPresentateur(new BookModel(), this);
+        bookPresentateur = new BookListPresentateur(new BookModel(), this);
 
         Button returnButton = findViewById(R.id.btnRetour_ListLivre);
         Button favoritesButton = findViewById(R.id.btnFavoris_ListLivre);
@@ -55,7 +55,7 @@ public class BookListActivity extends AppCompatActivity implements View.OnClickL
             startActivityForResult(intent, REQUEST_CODE_BOOK_DETAIL);
         });
 
-        bookPresenter.fetchBooks();
+        bookPresentateur.fetchBooks();
     }
 
     @Override
@@ -85,7 +85,7 @@ public class BookListActivity extends AppCompatActivity implements View.OnClickL
         if (requestCode == REQUEST_CODE_BOOK_DETAIL && resultCode == RESULT_OK) {
             if (data != null && data.getStringExtra("id") != null) {
                 // Rafraîchir la liste des livres après la mise à jour
-                bookPresenter.fetchBooks();
+                bookPresentateur.fetchBooks();
             }
         }
     }
