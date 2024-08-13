@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green">#5D3FD3</color>
     <color name="transparent">#00000000</color>
+    <color name="ISBN_recherche">#DCE3F5</color>
+    <color name="bordure_bleu">#3284FF</color>
 </resources>
