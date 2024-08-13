@@ -55,6 +55,9 @@ public class HttpJsonService {
         String jsonStr = responseBody.string();
         List<Livre> livres = null;
 
+        Log.d("HttpJsonService", "Response code: " + response.code());
+        Log.d("HttpJsonService", "Response body: " + jsonStr);
+
         Log.d("HttpJsonService:getLivres", jsonStr);
 
         if (jsonStr.length() > 0) {
@@ -118,7 +121,7 @@ public class HttpJsonService {
         obj.put("date_publication", livre.getDatePublication());
         obj.put("description", livre.getDescription());
         obj.put("appreciation_moyenne", livre.getAppreciationMoyenne());
-        obj.put("nombre_appreciations", livre.getNbrAppreciations());
+        obj.put("nombre_appreciations", livre.getNombreAppreciations());
 
         // Type de contenu de la requête
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");

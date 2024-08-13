@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * Classe responsable de la gestion des opérations liées aux livres dans la base de données.
  * Utilise HttpJsonService pour communiquer avec le service Web pour les opérations CRUD sur les livres.
- *
  */
 public class LivreDao {
 
@@ -29,7 +28,7 @@ public class LivreDao {
      * Récupère la liste des livres en interrogeant le service Web.
      *
      * @return Liste des livres.
-     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la communication avec le service Web.
+     * @throws IOException   Si une erreur d'entrée/sortie se produit lors de la communication avec le service Web.
      * @throws JSONException Si une erreur se produit lors du traitement des données JSON.
      */
     public List<Livre> getLivres() throws IOException, JSONException {
@@ -42,7 +41,7 @@ public class LivreDao {
      *
      * @param livre L'objet Livre contenant les informations à ajouter.
      * @return true si l'ajout est réussi, false sinon.
-     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la communication avec le service Web.
+     * @throws IOException   Si une erreur d'entrée/sortie se produit lors de la communication avec le service Web.
      * @throws JSONException Si une erreur se produit lors du traitement des données JSON.
      */
     public boolean ajouterLivre(Livre livre) throws IOException, JSONException {
@@ -55,7 +54,7 @@ public class LivreDao {
      *
      * @param livre L'objet Livre à supprimer.
      * @return true si la suppression est réussie, false sinon.
-     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la communication avec le service Web.
+     * @throws IOException   Si une erreur d'entrée/sortie se produit lors de la communication avec le service Web.
      * @throws JSONException Si une erreur se produit lors du traitement des données JSON.
      */
     public boolean supprimerLivre(Livre livre) throws IOException, JSONException {
