@@ -14,7 +14,7 @@ public class Utilisateur {
     private String prenom;
     private String id;
     //private String motDePasse;
-   // public static final String MDP_UTILISATEUR = "mdp123";
+    public static final String MDP_UTILISATEUR = "mdp123";
 
     /**
      * Constructeur par défaut.
@@ -114,12 +114,12 @@ public class Utilisateur {
         this.id = id;
     }
 
-    /*public String getMotDePasse() {
+    public String getMotDePasse() {
 
-        return motDePasse;
+        return MDP_UTILISATEUR;
     }
 
-    public void setMotDePasse(String motDePasse) {
+    /*public void setMotDePasse(String motDePasse) {
 
         this.motDePasse = motDePasse;
     }*/

@@ -1,47 +1,41 @@
 package com.eq3.bibliotheque.modele;
 
-import android.content.Context;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
+import android.util.Log;
+import com.eq3.bibliotheque.dao.HttpJsonService;
+import org.json.JSONException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UtilisateurModele {
+    private static final String TAG = "UtilisateurModele";
+    private HttpJsonService httpJsonService;
 
-    private List<Utilisateur> users;
+    public UtilisateurModele() {
+        this.httpJsonService = new HttpJsonService();
+    }
 
     public interface LoadUsersCallback {
         void onSuccess(List<Utilisateur> users);
         void onError(String message);
     }
 
-    public void loadUsers(Context context, LoadUsersCallback callback) {
-        try {
-            InputStream is = context.getAssets().open("bibliotheque.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            String json = new String(buffer, StandardCharsets.UTF_8);
-
-            Gson gson = new Gson();
-            Type listType = new TypeToken<List<Utilisateur>>(){}.getType();
-            users = gson.fromJson(json, listType);
-
-            callback.onSuccess(users);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            callback.onError("Erreur lors du chargement du fichier JSON");
-        }
+    public void loadUsers(LoadUsersCallback callback) {
+        new Thread(() -> {
+            try {
+                List<Utilisateur> users = httpJsonService.getComptes();
+                if (users != null && !users.isEmpty()) {
+                    callback.onSuccess(users);
+                } else {
+                    callback.onError("Aucun utilisateur trouvé");
+                }
+            } catch (IOException | JSONException e) {
+                Log.e(TAG, "Erreur lors du chargement des utilisateurs", e);
+                callback.onError("Échec du chargement des utilisateurs : " + e.getMessage());
+            }
+        }).start();
     }
 
-    public Utilisateur findUserByEmail(String email) {
+    public Utilisateur findUserByEmail(List<Utilisateur> users, String email) {
         if (users != null) {
             for (Utilisateur user : users) {
                 if (user.getCompte().equals(email)) {

@@ -7,24 +7,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.eq3.bibliotheque.R;
 import com.eq3.bibliotheque.modele.Utilisateur;
 import com.eq3.bibliotheque.modele.UtilisateurModele;
 import com.eq3.bibliotheque.presentateur.ConnexionPresentateur;
-import com.eq3.bibliotheque.presentateur.LoginPresentateur;
-
 import java.util.List;
 
 public class activity_login extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "activity_login";
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button loginButton;
     private ConnexionPresentateur loginPresentateur;
-    private static final String TAG = "activity_login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +31,10 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
 
-        loginButton.setOnClickListener(this);
-
-        // Initialisation du présentateur
         loginPresentateur = new ConnexionPresentateur(new UtilisateurModele(), this);
+        loginPresentateur.loadUsers();
 
-        // Chargement des utilisateurs
-        loginPresentateur.loadUsers(this);
+        loginButton.setOnClickListener(this);
     }
 
     @Override
@@ -76,7 +69,9 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     }
 
     public void updateUserList(List<Utilisateur> users) {
-        // Cette méthode peut être utilisée pour mettre à jour l'interface utilisateur si nécessaire
+        for (Utilisateur user : users) {
+            Log.d(TAG, "Utilisateur chargé: " + user.getCompte());
+        }
         Toast.makeText(this, "Nombre d'utilisateurs chargés : " + users.size(), Toast.LENGTH_SHORT).show();
     }
 }
