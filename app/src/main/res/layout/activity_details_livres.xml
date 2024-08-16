@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.DetailsLivres">
 
     <LinearLayout
@@ -15,82 +16,82 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="Détails du livre"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editTitre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Titre"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:hint="Titre" />
 
         <EditText
             android:id="@+id/editAuteur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Auteur"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:hint="Auteur" />
 
         <EditText
             android:id="@+id/editISBN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ISBN"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:hint="ISBN" />
 
         <EditText
             android:id="@+id/editMaisonEdition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Maison d'édition"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:hint="Maison d'édition" />
 
         <EditText
             android:id="@+id/editDatePublication"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date de publication"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:hint="Date de publication" />
 
         <EditText
             android:id="@+id/editDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
             android:enabled="false"
+            android:hint="Description"
             android:inputType="textMultiLine"
-            android:lines="4"/>
+            android:lines="4" />
 
         <TextView
             android:id="@+id/textMoyenneEvaluations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Moyenne des évaluations : "
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:text="Moyenne des évaluations : " />
 
         <RatingBar
             android:id="@+id/ratingBarEvaluation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:numStars="5"
-            android:stepSize="0.5"
-            android:layout_marginTop="8dp"/>
+            android:stepSize="0.5" />
 
         <Button
             android:id="@+id/buttonEnregistrer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enregistrer"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:text="Enregistrer" />
 
         <Button
             android:id="@+id/buttonRetour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Retour"/>
+            android:text="Retour" />
 
     </LinearLayout>
 </ScrollView>

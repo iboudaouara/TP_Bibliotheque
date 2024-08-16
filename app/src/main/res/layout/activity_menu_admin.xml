@@ -5,6 +5,78 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.MenuAdmin">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtListLivre"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="200dp"
+            android:width="200dp"
+            android:background="@drawable/border"
+            android:padding="10dp"
+            android:shadowColor="#87AED8"
+            android:text="Menu Administrateur"
+            android:textAlignment="center"
+            android:textColor="#2E58C5"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/btnAjouterMenu"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#86a1e7"
+            android:minWidth="120dp"
+            android:text="Ajouter un livre"
+            android:textColorLink="#2E58C5"
+            android:textSize="18dp"
+            app:cornerRadius="5dp"/>
+
+        <Button
+            android:id="@+id/btnSupprimerMenu"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#86a1e7"
+            android:minWidth="120dp"
+            android:text="Supprimer un livre"
+            android:textColorLink="#2E58C5"
+            android:textSize="18dp"
+            app:cornerRadius="5dp"/>
+
+        <Button
+            android:id="@+id/btnListeContactMenu"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#86a1e7"
+            android:minWidth="120dp"
+            android:text="Liste des clients"
+            android:textColorLink="#2E58C5"
+            android:textSize="18dp"
+            app:cornerRadius="5dp"
+            android:layout_marginBottom="185dp"/>
+
+        <Button
+            android:id="@+id/btnRetourMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#2E58C5"
+            android:minWidth="120dp"
+            android:text="Retour"
+            android:textColorLink="#2E58C5"
+            android:textSize="18dp"
+            app:cornerRadius="5dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
