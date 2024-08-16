@@ -18,6 +18,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activities.SupprimerLivreActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ListeFavorisActivity"
             android:exported="true" />
         <activity
@@ -36,7 +39,7 @@
             android:name=".activities.ListeLivresActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.SupprimerLivreActivity"
+            android:name=".activities.ListeClientsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

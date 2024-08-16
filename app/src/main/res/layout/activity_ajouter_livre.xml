@@ -86,7 +86,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edtAuteur"
+                android:id="@+id/edtAuteurAjouter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -116,7 +116,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edtISBN"
+                android:id="@+id/edtISBNAjouter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -147,7 +147,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edtMaisonEdition"
+                android:id="@+id/edtMaisonEditionAjouter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -178,7 +178,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edtDatePublication"
+                android:id="@+id/edtDatePublicationAjouter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -211,7 +211,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edtDescription"
+                android:id="@+id/edtDescriptionAjouter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
