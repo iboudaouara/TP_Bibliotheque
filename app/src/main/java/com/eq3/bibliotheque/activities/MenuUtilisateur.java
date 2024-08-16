@@ -1,6 +1,8 @@
 package com.eq3.bibliotheque.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,16 +13,23 @@ import androidx.core.view.WindowInsetsCompat;
 import com.eq3.bibliotheque.R;
 
 public class MenuUtilisateur extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_menu_utilisateur);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        Button btnListeLivres = findViewById(R.id.btnListeLivres);
+        Button btnFavoris = findViewById(R.id.btnFavoris);
+
+        btnListeLivres.setOnClickListener(v -> {
+            startActivity(new Intent(MenuUtilisateur.this, ListeLivresActivity.class));
         });
+
+        btnFavoris.setOnClickListener(v -> {
+            startActivity(new Intent(MenuUtilisateur.this, ListeFavorisActivity.class));
+        });
+
     }
+
 }
