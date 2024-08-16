@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eq3.bibliotheque.R;
+import com.eq3.bibliotheque.dao.DataBaseHelper;
 import com.eq3.bibliotheque.modele.Livre;
 import com.eq3.bibliotheque.dao.LivreDao;
 
@@ -81,12 +82,16 @@ public class DetailsLivres extends AppCompatActivity {
 
     private void saveRating() {
         float newRating = ratingBarEvaluation.getRating();
+
         try {
             if (livre.getNombreAppreciations() == 0) {
                 // Première évaluation
                 livre.setAppreciationMoyenne(newRating);
                 livre.setNombreAppreciations(1);
-            } else {
+            }
+
+            else {
+
                 // Mise à jour de l'évaluation
                 double oldTotal = livre.getAppreciationMoyenne() * livre.getNombreAppreciations();
                 double newTotal = oldTotal + newRating;
@@ -96,12 +101,25 @@ public class DetailsLivres extends AppCompatActivity {
             }
 
             if (livreDao.updateLivre(livre)) {
+
                 updateRatingDisplay();
                 Toast.makeText(this, "Évaluation enregistrée", Toast.LENGTH_SHORT).show();
-            } else {
+            }
+
+            if (newRating >= 4) {
+
+                DataBaseHelper dbhelper = new DataBaseHelper(this);
+                dbhelper.ajouterFavori(livre);
+            }
+
+            else {
+
                 Toast.makeText(this, "Erreur lors de l'enregistrement", Toast.LENGTH_SHORT).show();
             }
-        } catch (IOException | JSONException e) {
+
+        }
+
+        catch (IOException | JSONException e) {
             Toast.makeText(this, "Erreur : " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
