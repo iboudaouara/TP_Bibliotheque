@@ -185,4 +185,40 @@ public class HttpJsonService {
 
         return null;
     }
+
+    public boolean updateLivre(Livre livre) throws IOException, JSONException {
+        String url = "http://10.0.2.2:3000/livres/" + livre.getId();
+
+        // Création du JSON pour le livre
+        JSONObject livreJson = new JSONObject();
+        livreJson.put("titre", livre.getTitre());
+        livreJson.put("auteur", livre.getAuteur());
+        livreJson.put("isbn", livre.getIsbn());
+        livreJson.put("maison_edition", livre.getMaisonEdition());
+        livreJson.put("date_publication", livre.getDatePublication());
+        livreJson.put("description", livre.getDescription());
+        livreJson.put("appreciation_moyenne", livre.getAppreciationMoyenne());
+        livreJson.put("nombre_appreciations", livre.getNombreAppreciations());
+
+        // Type de contenu de la requête
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+        // Création du corps de la requête
+        RequestBody body = RequestBody.create(livreJson.toString(), JSON);
+
+        // Création de l'instance OkHttpClient
+        OkHttpClient client = new OkHttpClient();
+
+        // Construction de la requête PUT
+        Request request = new Request.Builder()
+                .url(url)
+                .put(body)
+                .build();
+
+        // Exécution de la requête et traitement de la réponse
+        try (Response response = client.newCall(request).execute()) {
+            return response.isSuccessful();
+        }
+    }
+
 }

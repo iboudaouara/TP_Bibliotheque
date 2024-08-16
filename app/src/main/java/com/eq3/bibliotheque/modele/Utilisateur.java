@@ -10,6 +10,7 @@ public class Utilisateur {
     private String nom;
     private String prenom;
     private String id;
+    private String motDePasse;
 
     /**
      * Constructeur par défaut.
@@ -25,11 +26,12 @@ public class Utilisateur {
      * @param prenom Prénom de l'utilisateur.
      * @param id Identifiant unique de l'utilisateur.
      */
-    public Utilisateur(String mail, String nom, String prenom, String id) {
+    public Utilisateur(String mail, String nom, String prenom, String id, String motDePasse) {
         this.mail = mail;
         this.nom = nom;
         this.prenom = prenom;
         this.id = id;
+        this.motDePasse = motDePasse;
     }
 
     /**
@@ -102,5 +104,13 @@ public class Utilisateur {
      */
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 }

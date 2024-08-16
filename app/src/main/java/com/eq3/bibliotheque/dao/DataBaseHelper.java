@@ -1,8 +1,15 @@
 package com.eq3.bibliotheque.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.eq3.bibliotheque.modele.Livre;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Helper pour gérer la base de données SQLite de l'application.
@@ -63,5 +70,41 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         // Crée une nouvelle table
         onCreate(db);
+    }
+
+    public void ajouterFavori(Livre livre) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("id", livre.getId());
+        values.put("titre", livre.getTitre());
+        values.put("auteur", livre.getAuteur());
+        values.put("note", livre.getAppreciationMoyenne());
+        db.insert("favoris", null, values);
+        db.close();
+    }
+
+    public List<Livre> getFavoris() {
+        List<Livre> favoris = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM favoris WHERE note >= 4", null);
+        if (cursor.moveToFirst()) {
+            do {
+                Livre livre = new Livre(
+                        cursor.getString(1), // titre
+                        cursor.getString(2), // auteur
+                        "", // isbn
+                        "", // maison d'édition
+                        "", // date de publication
+                        "", // description
+                        cursor.getDouble(3), // note
+                        0, // nombre d'appréciations
+                        cursor.getString(0) // id
+                );
+                favoris.add(livre);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return favoris;
     }
 }

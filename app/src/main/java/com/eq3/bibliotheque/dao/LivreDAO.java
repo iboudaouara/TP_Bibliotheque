@@ -11,7 +11,7 @@ import java.util.List;
  * Classe responsable de la gestion des opérations liées aux livres dans la base de données.
  * Utilise HttpJsonService pour communiquer avec le service Web pour les opérations CRUD sur les livres.
  */
-public class LivreDao {
+public class LivreDAO {
 
     private HttpJsonService httpJsonService;
 
@@ -19,7 +19,7 @@ public class LivreDao {
      * Constructeur pour initialiser l'instance de HttpJsonService.
      * Crée un nouvel objet HttpJsonService pour effectuer les requêtes HTTP.
      */
-    public LivreDao() {
+    public LivreDAO() {
 
         this.httpJsonService = new HttpJsonService(); // Initialisation de HttpJsonService
     }
@@ -35,6 +35,8 @@ public class LivreDao {
 
         return httpJsonService.getLivres();
     }
+
+
 
     /**
      * Ajoute un nouveau livre en envoyant les détails au service Web.
@@ -60,5 +62,10 @@ public class LivreDao {
     public boolean supprimerLivre(Livre livre) throws IOException, JSONException {
 
         return httpJsonService.supprimerLivre(livre);
+    }
+
+    public boolean updateLivre(Livre livre) throws IOException, JSONException {
+
+        return httpJsonService.updateLivre(livre);
     }
 }

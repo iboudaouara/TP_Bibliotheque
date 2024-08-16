@@ -1,19 +1,18 @@
 package com.eq3.bibliotheque.modele;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Class contenant les informations necessaires pour un objet Livre
  *
  */
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Livre {
 
     /*L'annotation @JsonProperty est utilisée pour indiquer comment les champs d'une classe Java
     doivent être mappés aux propriétés correspondantes dans le JSON lors de la sérialisation et
     de la désérialisation. Elle permet de spécifier des noms de propriétés JSON personnalisés ou
     de gérer des différences de noms entre les champs de la classe et les clés du JSON.*/
+
     @JsonProperty("titre")
     private String titre;
 
@@ -61,23 +60,37 @@ public class Livre {
         this.id = id;
     }
 
+    public Livre(String titre, String auteur, String isbn, String maisonEdition, String datePublication, String description) {
+        this.titre = titre;
+        this.auteur = auteur;
+        this.isbn = isbn;
+        this.maisonEdition = maisonEdition;
+        this.datePublication = datePublication;
+        this.description = description;
+    }
+
     public String getTitre() {
+
         return titre;
     }
 
     public String getAuteur() {
+
         return auteur;
     }
 
     public String getIsbn() {
+
         return isbn;
     }
 
     public String getMaisonEdition() {
+
         return maisonEdition;
     }
 
     public String getDatePublication() {
+
         return datePublication;
     }
 
@@ -90,11 +103,22 @@ public class Livre {
     }
 
     public int getNombreAppreciations() {
+
         return nombreAppreciations;
     }
 
     public String getId() {
+
         return id;
     }
+
+    public void setAppreciationMoyenne(double appreciationMoyenne) {
+        this.appreciationMoyenne = appreciationMoyenne;
+    }
+
+    public void setNombreAppreciations(int nombreAppreciations) {
+        this.nombreAppreciations = nombreAppreciations;
+    }
+
 }
 
