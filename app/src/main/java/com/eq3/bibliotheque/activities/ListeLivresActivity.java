@@ -86,7 +86,7 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
 
         if (v.getId() == R.id.btnRetour_ListLivre) {
 
-            Intent intent1 = new Intent(ListeLivresActivity.this, activity_login.class);
+            Intent intent1 = new Intent(ListeLivresActivity.this, ConnexionActivity.class);
             startActivity(intent1);
             finish();
         }

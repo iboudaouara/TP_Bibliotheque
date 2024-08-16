@@ -14,7 +14,7 @@ import com.eq3.bibliotheque.modele.UtilisateurModele;
 import com.eq3.bibliotheque.presentateur.ConnexionPresentateur;
 import java.util.List;
 
-public class activity_login extends AppCompatActivity implements View.OnClickListener {
+public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "activity_login";
     private EditText emailEditText;
@@ -31,7 +31,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
 
-        loginPresentateur = new ConnexionPresentateur(new UtilisateurModele(), this);
+        loginPresentateur = new ConnexionPresentateur(new UtilisateurModele(),this);
         loginPresentateur.loadUsers();
 
         loginButton.setOnClickListener(this);
@@ -49,11 +49,11 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     public void showLoginSuccess(boolean isAdmin) {
         if (isAdmin) {
             Toast.makeText(this, "Connexion administrateur réussie", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(activity_login.this, MenuAdmin.class);
+            Intent intent = new Intent(ConnexionActivity.this, MenuAdmin.class);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Connexion client réussie", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(activity_login.this, MenuUtilisateur.class);
+            Intent intent = new Intent(ConnexionActivity.this, ListeLivresActivity.class);
             startActivity(intent);
         }
         finish();
