@@ -23,6 +23,7 @@ public class SupprimerLivrePresentateur {
     private LivreModele livreModele;
 
     private LivreDAO livreDao;
+    Livre livreTrouve = null;
 
     public SupprimerLivrePresentateur(SupprimerLivreActivity supprimerLivreActivity,
                                       LivreDAO livreDao) {
@@ -43,7 +44,7 @@ public class SupprimerLivrePresentateur {
 
                             listeLivres = livreDao.getLivres();
 
-                            Livre livreTrouve = null;
+
 
                             System.out.println("Ici le problème: " +
                                     supprimerLivreActivity.getIsbn());
@@ -57,7 +58,24 @@ public class SupprimerLivrePresentateur {
                                 }
                             }
 
-                            final Livre livreFinal = livreTrouve;
+                            System.out.println("Titre: " + livreTrouve.getTitre());
+
+                            supprimerLivreActivity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EditText edtAuteur = supprimerLivreActivity.findViewById(R.id.edtAuteurSupprimer);
+                                    edtAuteur.setText(livreTrouve.getAuteur());
+
+                                    EditText edtMaisonEdition = supprimerLivreActivity.findViewById(R.id.edtMaisonEditionSupprimer);
+                                    edtMaisonEdition.setText(livreTrouve.getMaisonEdition());
+
+                                    EditText edtDatePublication = supprimerLivreActivity.findViewById(R.id.edtDatePublicationSupprimer);
+                                    edtDatePublication.setText(livreTrouve.getDatePublication());
+
+                                    EditText edtDescription = supprimerLivreActivity.findViewById(R.id.edtDescriptionSupprimer);
+                                    edtDescription.setText(livreTrouve.getDescription());
+                                }
+                            });
 
 
 
@@ -78,16 +96,19 @@ public class SupprimerLivrePresentateur {
 
     public void supprimerLivre() throws IOException, JSONException {
 
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-        try {
-            livreDao.supprimerLivre((livreDao.getLivres()).get(0));
-        } catch (IOException e) {
-            throw new IOException(e);
-        } catch (JSONException e) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-                throw new JSONException(e);
+                try {
+                    livreDao.supprimerLivre(livreTrouve);
+
+                } catch (IOException | JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
             }
-        }
+        })).start();
     }
 
 

@@ -12,6 +12,10 @@ import com.eq3.bibliotheque.R;
 import com.eq3.bibliotheque.dao.LivreDAO;
 import com.eq3.bibliotheque.presentateur.SupprimerLivrePresentateur;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
 public class SupprimerLivreActivity extends AppCompatActivity
                                         implements View.OnClickListener {
 
@@ -75,6 +79,12 @@ public class SupprimerLivreActivity extends AppCompatActivity
 
         // Pour confirmer la suppresion d'un livre
         else if (v == btnSupprimer) {
+
+            try {
+                supprimerLivrePresentateur.supprimerLivre();
+            } catch (IOException | JSONException e) {
+                throw new RuntimeException(e);
+            }
 
             setResult(RESULT_OK);
             finish();

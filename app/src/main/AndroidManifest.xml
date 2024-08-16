@@ -24,7 +24,7 @@
             android:name=".activities.ListeFavorisActivity"
             android:exported="true" />
 
-        <activity android:name=".activities.SupprimerLivreActivity"
+        <activity android:name=".activities.ListeClientsActivity"
             android:exported="true" />
         <activity
             android:name=".activities.MenuUtilisateur"
@@ -42,7 +42,7 @@
             android:name=".activities.ListeLivresActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.ListeClientsActivity"
+            android:name=".activities.SupprimerLivreActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

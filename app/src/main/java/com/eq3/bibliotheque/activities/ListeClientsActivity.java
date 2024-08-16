@@ -46,7 +46,7 @@ public class ListeClientsActivity extends AppCompatActivity
     public void onClick(View v) {
 
         if (v == btnRetour) {
-            Intent intention = new Intent (this, MenuUtilisateur.class);
+            Intent intention = new Intent (this, MenuAdmin.class);
             startActivity(intention);
         }
     }

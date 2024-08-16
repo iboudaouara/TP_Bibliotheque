@@ -49,7 +49,7 @@ public class CompteAdapter extends ArrayAdapter<Utilisateur> {
 
             // Définit le texte des TextViews avec les informations du livre.
             txtNomClient.setText(utilisateur.getPrenom() + " " + utilisateur.getNom());
-            txtEmailClient.setText(utilisateur.getMail());
+            txtEmailClient.setText(utilisateur.getCompte());
 
         }
 
