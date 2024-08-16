@@ -39,9 +39,12 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation ("com.squareup.okhttp3:okhttp:4.9.1")
     implementation ("com.fasterxml.jackson.core:jackson-databind:2.12.3")
+    implementation(libs.firebase.crashlytics.buildtools)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
+    implementation("com.google.code.gson:gson:2.10.1")
+
 }

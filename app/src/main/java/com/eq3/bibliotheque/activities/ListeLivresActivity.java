@@ -40,6 +40,7 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_livre);
 
@@ -62,10 +63,10 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
         // Configuration du comportement lorsque l'utilisateur clique sur un livre
         listeLivresView.setOnItemClickListener((parent, view, position, id) -> {
             Livre livreSelectionne = listeLivres.get(position);
-            Intent intent = new Intent(ListeLivresActivity.this, AjoutLivreActivity.class);
+            Intent intent = new Intent(ListeLivresActivity.this, DetailsLivres.class);
 
             // Passe l'ID du livre pour récupérer les détails
-            intent.putExtra("id", livreSelectionne.getId());
+            intent.putExtra("livre", livreSelectionne);
 
             startActivityForResult(intent, CODE_REQUETE_DETAIL_LIVRE);
         });
@@ -82,11 +83,16 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
      */
     @Override
     public void onClick(View v) {
+
         if (v.getId() == R.id.btnRetour_ListLivre) {
+
             Intent intent1 = new Intent(ListeLivresActivity.this, activity_login.class);
             startActivity(intent1);
             finish();
-        } else if (v.getId() == R.id.btnFavoris_ListLivre) {
+        }
+
+        else if (v.getId() == R.id.btnFavoris_ListLivre) {
+
             // TODO: Implémenter la logique pour les favoris
         }
     }
@@ -97,6 +103,7 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
      * @param livres La nouvelle liste de livres à afficher.
      */
     public void updateBookList(ArrayList<Livre> livres) {
+
         listeLivres.clear();
         listeLivres.addAll(livres);
         livreAdaptateur.notifyDataSetChanged();
@@ -108,6 +115,7 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
      * @param message Le message d'erreur à afficher.
      */
     public void showError(String message) {
+
         Log.e(TAG, message);
     }
 

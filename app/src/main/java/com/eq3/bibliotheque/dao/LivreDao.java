@@ -36,6 +36,8 @@ public class LivreDao {
         return httpJsonService.getLivres();
     }
 
+
+
     /**
      * Ajoute un nouveau livre en envoyant les détails au service Web.
      *
@@ -60,5 +62,10 @@ public class LivreDao {
     public boolean supprimerLivre(Livre livre) throws IOException, JSONException {
 
         return httpJsonService.supprimerLivre(livre);
+    }
+
+    public boolean updateLivre(Livre livre) throws IOException, JSONException {
+
+        return httpJsonService.updateLivre(livre);
     }
 }

@@ -1,12 +1,13 @@
 package com.eq3.bibliotheque.modele;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  * Class contenant les informations necessaires pour un objet Livre
  *
  */
-public class Livre {
+public class Livre implements Serializable {
     private String titre;
     private String auteur;
     private String isbn;
@@ -31,22 +32,27 @@ public class Livre {
     }
 
     public String getTitre() {
+
         return titre;
     }
 
     public String getAuteur() {
+
         return auteur;
     }
 
     public String getIsbn() {
+
         return isbn;
     }
 
     public String getMaisonEdition() {
+
         return maisonEdition;
     }
 
     public String getDatePublication() {
+
         return datePublication;
     }
 
@@ -61,12 +67,21 @@ public class Livre {
     }
 
     public int getNombreAppreciations() {
+
         return nombreAppreciations;
     }
 
     public String getId() {
+
         return id;
     }
 
+    public void setAppreciationMoyenne(double appreciationMoyenne) {
+        this.appreciationMoyenne = appreciationMoyenne;
+    }
+
+    public void setNombreAppreciations(int nombreAppreciations) {
+        this.nombreAppreciations = nombreAppreciations;
+    }
 
 }
