@@ -23,6 +23,9 @@
         <activity
             android:name=".activities.ListeFavorisActivity"
             android:exported="true" />
+
+        <activity android:name=".activities.ListeClientsActivity"
+            android:exported="true" />
         <activity
             android:name=".activities.MenuUtilisateur"
             android:exported="true" />

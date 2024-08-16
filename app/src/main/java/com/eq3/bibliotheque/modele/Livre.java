@@ -49,8 +49,10 @@ public class Livre implements Serializable {
 
     }
 
-    public Livre(String titre, String auteur, String isbn, String maisonEdition, String datePublication,
-                 String description, double appreciationMoyenne, int nombreAppreciations, String id) {
+    public Livre(String titre, String auteur, String isbn, String maisonEdition,
+                 String datePublication, String description, double appreciationMoyenne,
+                 int nombreAppreciations, String id) {
+
         this.titre = titre;
         this.auteur = auteur;
         this.isbn = isbn;
@@ -62,7 +64,9 @@ public class Livre implements Serializable {
         this.id = id;
     }
 
-    public Livre(String titre, String auteur, String isbn, String maisonEdition, String datePublication, String description) {
+    public Livre(String titre, String auteur, String isbn, String maisonEdition,
+                 String datePublication, String description) {
+
         this.titre = titre;
         this.auteur = auteur;
         this.isbn = isbn;
@@ -72,27 +76,22 @@ public class Livre implements Serializable {
     }
 
     public String getTitre() {
-
         return titre;
     }
 
     public String getAuteur() {
-
         return auteur;
     }
 
     public String getIsbn() {
-
         return isbn;
     }
 
     public String getMaisonEdition() {
-
         return maisonEdition;
     }
 
     public String getDatePublication() {
-
         return datePublication;
     }
 
@@ -105,12 +104,10 @@ public class Livre implements Serializable {
     }
 
     public int getNombreAppreciations() {
-
         return nombreAppreciations;
     }
 
     public String getId() {
-
         return id;
     }
 
@@ -121,6 +118,5 @@ public class Livre implements Serializable {
     public void setNombreAppreciations(int nombreAppreciations) {
         this.nombreAppreciations = nombreAppreciations;
     }
-
 }
 

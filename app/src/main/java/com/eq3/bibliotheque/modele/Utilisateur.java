@@ -1,10 +1,13 @@
 package com.eq3.bibliotheque.modele;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Class contenant les informations necessaires pour un Utilisateur
  *
  */
 public class Utilisateur {
+
 
     private String compte;
     private String nom;

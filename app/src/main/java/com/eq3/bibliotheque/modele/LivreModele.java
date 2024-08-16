@@ -8,10 +8,21 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
+import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
  * Classe modèle pour gérer les opérations liées aux livres.
  */
 public class LivreModele {
+
+    private List<Livre> listeLivres;
+
     private static final String TAG = "LivreModele"; // Tag pour les logs
     private HttpJsonService httpJsonService;
 
@@ -42,5 +53,18 @@ public class LivreModele {
                 throw new RuntimeException(e);
             }
         }).start();
+    }
+
+
+
+
+    public Livre rechercherLivreParISBN(String isbn) throws IOException, JSONException {
+        // Implement the logic to retrieve the book from the database or API
+        for (Livre livre : listeLivres) {
+            if (livre.getIsbn().equals(isbn)) {
+                return livre;
+            }
+        }
+        return null;
     }
 }

@@ -1,9 +1,7 @@
 package com.eq3.bibliotheque.dao;
 
 import com.eq3.bibliotheque.modele.Livre;
-
 import org.json.JSONException;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -35,8 +33,6 @@ public class LivreDAO {
 
         return httpJsonService.getLivres();
     }
-
-
 
     /**
      * Ajoute un nouveau livre en envoyant les détails au service Web.

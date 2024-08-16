@@ -40,19 +40,19 @@ public class AjouterLivreActivity extends AppCompatActivity implements View.OnCl
         edtTitre = findViewById(R.id.edtTitre);
 
         txtAuteur = findViewById(R.id.txtAuteur);
-        edtAuteur = findViewById(R.id.edtAuteur);
+        edtAuteur = findViewById(R.id.edtAuteurAjouter);
 
         txtISBN = findViewById(R.id.txtISBN);
-        edtISBN = findViewById(R.id.edtISBN);
+        edtISBN = findViewById(R.id.edtISBNAjouter);
 
         txtMaisonEdition = findViewById(R.id.txtMaisonEdition);
-        edtMaisonEdition = findViewById(R.id.edtMaisonEdition);
+        edtMaisonEdition = findViewById(R.id.edtMaisonEditionAjouter);
 
         txtDatePublication = findViewById(R.id.txtDatePublication);
-        edtDatePublication = findViewById(R.id.edtDatePublication);
+        edtDatePublication = findViewById(R.id.edtDatePublicationAjouter);
 
         txtDescription = findViewById(R.id.txtDescription);
-        edtDescription = findViewById(R.id.edtDescription);
+        edtDescription = findViewById(R.id.edtDescriptionAjouter);
 
         btnRetour = findViewById(R.id.btnRetourAjouter);
         btnAjouter = findViewById(R.id.btnSupprimer);
