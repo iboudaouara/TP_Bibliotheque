@@ -2,11 +2,13 @@ package com.eq3.bibliotheque.modele;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 /**
  * Class contenant les informations necessaires pour un objet Livre
  *
  */
-public class Livre {
+public class Livre implements Serializable {
 
     /*L'annotation @JsonProperty est utilisée pour indiquer comment les champs d'une classe Java
     doivent être mappés aux propriétés correspondantes dans le JSON lors de la sérialisation et

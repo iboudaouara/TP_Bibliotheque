@@ -16,6 +16,7 @@ public class LivreModele {
     private HttpJsonService httpJsonService;
 
     public LivreModele() {
+
         this.httpJsonService = new HttpJsonService();
     }
 
