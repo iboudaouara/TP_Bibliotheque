@@ -27,7 +27,7 @@
             android:name=".activities.DetailsLivres"
             android:exported="true" />
         <activity
-            android:name=".activities.SupprLivreActivity"
+            android:name=".activities.AjouterLivreActivity"
             android:exported="true" />
         <activity
             android:name=".activities.activity_login"
@@ -36,7 +36,7 @@
             android:name=".activities.ListeLivresActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.AjouterLivreActivity"
+            android:name=".activities.SupprimerLivreActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

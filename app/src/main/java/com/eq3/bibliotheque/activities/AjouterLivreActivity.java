@@ -5,8 +5,7 @@ import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import com.eq3.bibliotheque.R;
-import com.eq3.bibliotheque.dao.LivreDao;
-import com.eq3.bibliotheque.modele.Livre;
+import com.eq3.bibliotheque.dao.LivreDAO;
 import com.eq3.bibliotheque.presentateur.AjouterLivrePresentateur;
 
 import org.json.JSONException;
@@ -55,11 +54,11 @@ public class AjouterLivreActivity extends AppCompatActivity implements View.OnCl
         txtDescription = findViewById(R.id.txtDescription);
         edtDescription = findViewById(R.id.edtDescription);
 
-        btnRetour = findViewById(R.id.btnRetour);
-        btnAjouter = findViewById(R.id.btnAjouter);
+        btnRetour = findViewById(R.id.btnRetourAjouter);
+        btnAjouter = findViewById(R.id.btnSupprimer);
 
         // Créer le présentateur
-        ajouterLivrePresentateur = new AjouterLivrePresentateur(this, new LivreDao());
+        ajouterLivrePresentateur = new AjouterLivrePresentateur(this, new LivreDAO());
 
         // Ajouter des écouteurs aux boutons
         btnRetour.setOnClickListener(this);

@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.eq3.bibliotheque.R;
 import com.eq3.bibliotheque.dao.DataBaseHelper;
 import com.eq3.bibliotheque.modele.Livre;
-import com.eq3.bibliotheque.dao.LivreDao;
+import com.eq3.bibliotheque.dao.LivreDAO;
 
 import org.json.JSONException;
 
@@ -25,7 +25,7 @@ public class DetailsLivres extends AppCompatActivity {
     private RatingBar ratingBarEvaluation;
     private Button buttonEnregistrer, buttonRetour;
     private Livre livre;
-    private LivreDao livreDao;
+    private LivreDAO livreDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class DetailsLivres extends AppCompatActivity {
         setContentView(R.layout.activity_details_livres);
 
         initializeViews();
-        livreDao = new LivreDao();
+        livreDao = new LivreDAO();
 
         // Récupérer le livre passé en extra
         livre = (Livre) getIntent().getSerializableExtra("livre");

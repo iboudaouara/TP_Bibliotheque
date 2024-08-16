@@ -12,7 +12,7 @@ import java.util.List;
  * Utilise HttpJsonService pour interagir avec le service Web pour les opérations liées aux comptes utilisateurs.
  *
  */
-public class ComptesDao {
+public class ComptesDAO {
 
     private HttpJsonService httpJsonService;
 
@@ -20,7 +20,7 @@ public class ComptesDao {
      * Constructeur pour initialiser l'instance de HttpJsonService.
      * Crée un nouvel objet HttpJsonService pour effectuer les requêtes HTTP liées aux comptes utilisateurs.
      */
-    public ComptesDao() {
+    public ComptesDAO() {
 
         this.httpJsonService = new HttpJsonService(); // Initialisation de HttpJsonService
     }

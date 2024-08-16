@@ -1,12 +1,10 @@
 package com.eq3.bibliotheque.presentateur;
 
 import android.os.Build;
-import android.widget.Toast;
 
 import com.eq3.bibliotheque.activities.AjouterLivreActivity;
-import com.eq3.bibliotheque.dao.LivreDao;
+import com.eq3.bibliotheque.dao.LivreDAO;
 import com.eq3.bibliotheque.modele.Livre;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.json.JSONException;
 
@@ -15,10 +13,10 @@ import java.io.IOException;
 public class AjouterLivrePresentateur {
 
     private AjouterLivreActivity ajouterLivreActivity;
-    private LivreDao livreDao;
+    private LivreDAO livreDao;
 
     public AjouterLivrePresentateur(AjouterLivreActivity ajouterLivreActivity,
-                                    LivreDao livreDao) {
+                                    LivreDAO livreDao) {
 
         this.ajouterLivreActivity = ajouterLivreActivity;
         this.livreDao = livreDao;
