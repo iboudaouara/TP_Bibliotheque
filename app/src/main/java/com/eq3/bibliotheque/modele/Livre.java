@@ -31,6 +31,15 @@ public class Livre implements Serializable {
         this.id = id;
     }
 
+    public Livre(String titre, String auteur, String isbn, String maisonEdition, String datePublication, String description) {
+        this.titre = titre;
+        this.auteur = auteur;
+        this.isbn = isbn;
+        this.maisonEdition = maisonEdition;
+        this.datePublication = datePublication;
+        this.description = description;
+    }
+
     public String getTitre() {
 
         return titre;

@@ -24,19 +24,16 @@
             android:name=".activities.DetailsLivres"
             android:exported="true" />
         <activity
-            android:name=".activities.activity_login"
-            android:exported="true" />
-        <activity
             android:name=".activities.SupprLivreActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.AjoutLivreActivity"
+            android:name=".activities.activity_login"
             android:exported="true" />
         <activity
             android:name=".activities.ListeLivresActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.AjouterLivreActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
