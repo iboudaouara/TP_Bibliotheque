@@ -2,6 +2,7 @@ package com.eq3.bibliotheque.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,21 +12,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.eq3.bibliotheque.R;
 import com.eq3.bibliotheque.modele.Utilisateur;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.eq3.bibliotheque.modele.UtilisateurModele;
+import com.eq3.bibliotheque.presentateur.ConnexionPresentateur;
+import com.eq3.bibliotheque.presentateur.LoginPresentateur;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-public class activity_login extends AppCompatActivity {
+public class activity_login extends AppCompatActivity implements View.OnClickListener {
 
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button loginButton;
-    private List<Utilisateur> users;
+    private ConnexionPresentateur loginPresentateur;
+    private static final String TAG = "activity_login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,60 +35,48 @@ public class activity_login extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
 
-        loadUsers();
+        loginButton.setOnClickListener(this);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        // Initialisation du présentateur
+        loginPresentateur = new ConnexionPresentateur(new UtilisateurModele(), this);
 
-            @Override
-            public void onClick(View v) {
-
-                String email = emailEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
-                login(email, password);
-            }
-
-        });
-
+        // Chargement des utilisateurs
+        loginPresentateur.loadUsers(this);
     }
 
-    private void loadUsers() {
-        try {
-            InputStream is = getAssets().open("bibliotheque.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            String json = new String(buffer, StandardCharsets.UTF_8);
-
-            Gson gson = new Gson();
-            Type listType = new TypeToken<List<Utilisateur>>(){}.getType();
-            users = gson.fromJson(json, listType);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.loginButton) {
+            String email = emailEditText.getText().toString();
+            String password = passwordEditText.getText().toString();
+            loginPresentateur.login(email, password);
         }
     }
 
-    private void login(String email, String password) {
-        if (email.equals("Admin@example.com") && password.equals("tch057")) {
-            // Connexion administrateur réussie
+    public void showLoginSuccess(boolean isAdmin) {
+        if (isAdmin) {
             Toast.makeText(this, "Connexion administrateur réussie", Toast.LENGTH_SHORT).show();
-            // Ajoutez ici le code pour rediriger vers l'interface administrateur
+            Intent intent = new Intent(activity_login.this, MenuAdmin.class);
+            startActivity(intent);
         } else {
-            boolean isValidUser = false;
-            for (Utilisateur user : users) {
-                if (user.getMail().equals(email) && user.getMotDePasse().equals(password)) {
-                    isValidUser = true;
-                    break;
-                }
-            }
-
-            if (isValidUser) {
-                // Connexion client réussie
-                Toast.makeText(this, "Connexion client réussie", Toast.LENGTH_SHORT).show();
-                // Ajoutez ici le code pour rediriger vers l'interface client
-            } else {
-                Toast.makeText(this, "Identifiants invalides", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(this, "Connexion client réussie", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(activity_login.this, MenuUtilisateur.class);
+            startActivity(intent);
         }
+        finish();
+    }
+
+    public void showLoginError() {
+        Toast.makeText(this, "Identifiants invalides", Toast.LENGTH_SHORT).show();
+    }
+
+    public void showLoadError(String message) {
+        Toast.makeText(this, "Erreur de chargement : " + message, Toast.LENGTH_SHORT).show();
+        Log.e(TAG, "Erreur de chargement : " + message);
+    }
+
+    public void updateUserList(List<Utilisateur> users) {
+        // Cette méthode peut être utilisée pour mettre à jour l'interface utilisateur si nécessaire
+        Toast.makeText(this, "Nombre d'utilisateurs chargés : " + users.size(), Toast.LENGTH_SHORT).show();
     }
 }
