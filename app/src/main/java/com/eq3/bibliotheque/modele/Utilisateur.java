@@ -8,33 +8,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Utilisateur {
 
-    @JsonProperty("compte")
-    private String mail;
+
+    private String compte;
     private String nom;
     private String prenom;
     private String id;
-    private String motDePasse;
+    //private String motDePasse;
+   // public static final String MDP_UTILISATEUR = "mdp123";
 
     /**
      * Constructeur par défaut.
      */
     public Utilisateur() {
+
+        // Définir le mot de passe par défaut pour tous les utilisateurs
+       // this.motDePasse = MDP_UTILISATEUR;
     }
 
     /**
      * Constructeur par attributs
      *
-     * @param mail Adresse e-mail de l'utilisateur.
+     * @param compte Adresse e-mail de l'utilisateur.
      * @param nom Nom de l'utilisateur.
      * @param prenom Prénom de l'utilisateur.
      * @param id Identifiant unique de l'utilisateur.
      */
-    public Utilisateur(String mail, String nom, String prenom, String id, String motDePasse) {
-        this.mail = mail;
+    public Utilisateur(String compte, String nom, String prenom, String id) {
+        this.compte = compte;
         this.nom = nom;
         this.prenom = prenom;
         this.id = id;
-        this.motDePasse = motDePasse;
+        //this.motDePasse = MDP_UTILISATEUR;
     }
 
     /**
@@ -42,17 +46,17 @@ public class Utilisateur {
      *
      * @return Adresse e-mail de l'utilisateur.
      */
-    public String getMail() {
-        return mail;
+    public String getCompte() {
+        return compte;
     }
 
     /**
      * Définit l'adresse e-mail de l'utilisateur.
      *
-     * @param mail Adresse e-mail de l'utilisateur.
+     * @param compte Adresse e-mail de l'utilisateur.
      */
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setCompte(String compte) {
+        this.compte = compte;
     }
 
     /**
@@ -106,14 +110,18 @@ public class Utilisateur {
      * @param id Identifiant unique de l'utilisateur.
      */
     public void setId(String id) {
+
         this.id = id;
     }
 
-    public String getMotDePasse() {
+    /*public String getMotDePasse() {
+
         return motDePasse;
     }
 
     public void setMotDePasse(String motDePasse) {
+
         this.motDePasse = motDePasse;
-    }
+    }*/
+
 }

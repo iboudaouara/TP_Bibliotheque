@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Menu utilisateur"
+        android:text="@string/menu_utilisateur"
         android:textSize="24sp"
         android:layout_gravity="center"
         android:layout_marginBottom="32dp"/>
@@ -17,13 +17,13 @@
         android:id="@+id/btnListeLivres"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Liste des livres"
+        android:text="@string/liste_des_livres"
         android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/btnFavoris"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Consulter les favoris"/>
+        android:text="@string/consulter_les_favoris"/>
 
 </LinearLayout>
