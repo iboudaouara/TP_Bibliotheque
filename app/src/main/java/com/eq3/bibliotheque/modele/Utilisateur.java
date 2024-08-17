@@ -2,11 +2,13 @@ package com.eq3.bibliotheque.modele;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 /**
  * Class contenant les informations necessaires pour un Utilisateur
  *
  */
-public class Utilisateur {
+public class Utilisateur implements Serializable {
 
 
     private String compte;

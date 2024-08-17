@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.eq3.bibliotheque.R;
@@ -19,6 +20,7 @@ public class LivreAdaptateur extends ArrayAdapter<Livre> {
 
     private Context contexte;
     private List<Livre> livres;
+    private OnStarClickListener starClickListener;
 
     /**
      * Constructeur pour l'adaptateur de livres.
@@ -30,6 +32,14 @@ public class LivreAdaptateur extends ArrayAdapter<Livre> {
         super(contexte, R.layout.item_livre, livres);
         this.contexte = contexte;
         this.livres = livres;
+    }
+
+    public interface OnStarClickListener {
+        void onStarClick(Livre livre, int position);
+    }
+
+    public void setOnStarClickListener(OnStarClickListener listener) {
+        this.starClickListener = listener;
     }
 
     /**
@@ -64,6 +74,12 @@ public class LivreAdaptateur extends ArrayAdapter<Livre> {
             titreTextView.setText(livre.getTitre());
             dateTextView.setText(livre.getDatePublication());
             appreciationTextView.setText(String.format("%.1f", livre.getAppreciationMoyenne()));
+
+            appreciationTextView.setOnClickListener(v -> {
+                if (starClickListener != null) {
+                    starClickListener.onStarClick(livre, position);
+                }
+            });
 
             // TODO: Ajouter une méthode pour que le texte change de couleur lorsque la souris passe dessus ?
         }

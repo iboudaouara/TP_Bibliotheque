@@ -58,7 +58,7 @@ public class AjouterLivreActivity extends AppCompatActivity implements View.OnCl
         btnAjouter = findViewById(R.id.btnSupprimer);
 
         // Créer le présentateur
-        ajouterLivrePresentateur = new AjouterLivrePresentateur(this, new LivreDAO());
+        ajouterLivrePresentateur = new AjouterLivrePresentateur(this, new LivreDAO(this));
 
         // Ajouter des écouteurs aux boutons
         btnRetour.setOnClickListener(this);

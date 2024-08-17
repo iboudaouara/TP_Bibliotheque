@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -220,5 +221,32 @@ public class HttpJsonService {
             return response.isSuccessful();
         }
     }
+
+    /**
+     * Récupère la liste des livres dont la note est supérieure à 4 depuis le serveur JSON.
+     *
+     * @return Une liste d'objets Livre avec une note supérieure à 4.
+     * @throws IOException En cas d'erreur de communication avec le serveur.
+     * @throws JSONException En cas d'erreur de traitement JSON.
+     */
+    public List<Livre> getLivresFavoris() throws IOException, JSONException {
+
+        // Récupérer tous les livres
+        List<Livre> tousLesLivres = getLivres();
+        if (tousLesLivres == null) {
+            return null;
+        }
+
+        // Filtrer les livres pour ne garder que ceux avec une note supérieure à 4
+        List<Livre> livresFavoris = new ArrayList<>();
+        for (Livre livre : tousLesLivres) {
+            if (livre.getAppreciationMoyenne() > 4) {
+                livresFavoris.add(livre);
+            }
+        }
+
+        return livresFavoris;
+    }
+
 
 }

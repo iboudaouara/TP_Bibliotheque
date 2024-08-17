@@ -37,7 +37,7 @@ public class ConnexionPresentateur {
 
         if (email.equals("Admin@example.com") && password.equals("tch057")) {
             Log.d(TAG, "Connexion admin réussie");
-            vue.showLoginSuccess(true);
+            vue.showLoginSuccess(true, null); // Pas d'utilisateur pour l'admin
         } else {
             Utilisateur user = modele.findUserByEmail(users, email);
             Log.d(TAG, "Utilisateur trouvé: " + (user != null));
@@ -45,9 +45,10 @@ public class ConnexionPresentateur {
             if (user != null) {
                 Log.d(TAG, "Mot de passe attendu: " + Utilisateur.MDP_UTILISATEUR);
                 Log.d(TAG, "Mot de passe entré: " + password);
+
                 if (password.equals(Utilisateur.MDP_UTILISATEUR)) {
                     Log.d(TAG, "Connexion utilisateur réussie");
-                    vue.showLoginSuccess(false);
+                    vue.showLoginSuccess(false, user); // Passer l'utilisateur trouvé
                 } else {
                     Log.d(TAG, "Mot de passe incorrect");
                     vue.showLoginError();

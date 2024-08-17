@@ -46,14 +46,16 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void showLoginSuccess(boolean isAdmin) {
+    public void showLoginSuccess(boolean isAdmin, Utilisateur utilisateur) {
         if (isAdmin) {
             Toast.makeText(this, "Connexion administrateur réussie", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(activity_login.this, MenuAdmin.class);
+            intent.putExtra("utilisateur", utilisateur);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Connexion client réussie", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(activity_login.this, MenuUtilisateur.class);
+            Intent intent = new Intent(activity_login.this, ListeLivresActivity.class);
+            intent.putExtra("utilisateur", utilisateur);
             startActivity(intent);
         }
         finish();

@@ -26,35 +26,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:hint="Titre" />
+            android:hint="Titre"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/editAuteur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:hint="Auteur" />
+            android:hint="Auteur"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/editISBN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:hint="ISBN" />
+            android:hint="ISBN"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/editMaisonEdition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:hint="Maison d'édition" />
+            android:hint="Maison d'édition"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/editDatePublication"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:hint="Date de publication" />
+            android:hint="Date de publication"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/editDescription"
@@ -63,7 +68,8 @@
             android:enabled="false"
             android:hint="Description"
             android:inputType="textMultiLine"
-            android:lines="4" />
+            android:lines="4"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/textMoyenneEvaluations"
@@ -92,6 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Retour" />
+
 
     </LinearLayout>
 </ScrollView>

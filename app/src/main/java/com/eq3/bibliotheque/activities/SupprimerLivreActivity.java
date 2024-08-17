@@ -51,7 +51,7 @@ public class SupprimerLivreActivity extends AppCompatActivity
         btnSupprimer.setOnClickListener(this);
 
         // Créer le présentateur
-        supprimerLivrePresentateur = new SupprimerLivrePresentateur(this, new LivreDAO());
+        supprimerLivrePresentateur = new SupprimerLivrePresentateur(this, new LivreDAO(this));
 
     }
 

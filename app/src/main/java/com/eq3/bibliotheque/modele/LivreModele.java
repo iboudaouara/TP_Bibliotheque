@@ -55,9 +55,6 @@ public class LivreModele {
         }).start();
     }
 
-
-
-
     public Livre rechercherLivreParISBN(String isbn) throws IOException, JSONException {
         // Implement the logic to retrieve the book from the database or API
         for (Livre livre : listeLivres) {
