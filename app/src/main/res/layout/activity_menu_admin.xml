@@ -55,7 +55,7 @@
             app:cornerRadius="5dp"/>
 
         <Button
-            android:id="@+id/btnListeContactMenu"
+            android:id="@+id/btnListeUserMenu"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

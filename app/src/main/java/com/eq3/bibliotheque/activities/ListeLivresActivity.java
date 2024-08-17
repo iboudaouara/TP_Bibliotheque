@@ -2,7 +2,6 @@ package com.eq3.bibliotheque.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -76,7 +75,7 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnRetour_ListLivre) {
-            Intent intent1 = new Intent(ListeLivresActivity.this, activity_login.class);
+            Intent intent1 = new Intent(ListeLivresActivity.this, ConnexionActivity.class);
             startActivity(intent1);
             finish();
         } else if (v.getId() == R.id.btnFavoris_ListLivre) {
@@ -93,7 +92,8 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void showError(String message) {
-        Log.e(TAG, message);
+
+        android.util.Log.e(TAG, message);
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.eq3.bibliotheque.presentateur;
 
 import android.util.Log;
-import com.eq3.bibliotheque.activities.activity_login;
+
+import com.eq3.bibliotheque.activities.ConnexionActivity;
+import com.eq3.bibliotheque.activities.ConnexionActivity;
 import com.eq3.bibliotheque.modele.Utilisateur;
 import com.eq3.bibliotheque.modele.UtilisateurModele;
 import java.util.List;
@@ -9,10 +11,10 @@ import java.util.List;
 public class ConnexionPresentateur {
     private static final String TAG = "ConnexionPresentateur";
     private UtilisateurModele modele;
-    private activity_login vue;
+    private ConnexionActivity vue;
     private List<Utilisateur> users;
 
-    public ConnexionPresentateur(UtilisateurModele modele, activity_login vue) {
+    public ConnexionPresentateur(UtilisateurModele modele, ConnexionActivity vue) {
         this.modele = modele;
         this.vue = vue;
     }

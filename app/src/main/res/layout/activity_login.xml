@@ -8,15 +8,20 @@
     android:padding="16dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvAcceuil"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/border_connexion"
-        android:padding="7dp"
-        android:text="Gestion de bibliotheque virtuelle"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:width="200dp"
+        android:background="@drawable/border"
+        android:padding="10dp"
+        android:shadowColor="#87AED8"
+        android:text="Gestion de bibliothèque virtuelle"
+        android:textAlignment="center"
+        android:textColor="#2E58C5"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
 
     <LinearLayout
         android:layout_width="match_parent"
