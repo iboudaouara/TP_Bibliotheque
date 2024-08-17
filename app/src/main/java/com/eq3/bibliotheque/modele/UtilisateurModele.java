@@ -11,6 +11,7 @@ public class UtilisateurModele {
     private HttpJsonService httpJsonService;
 
     public UtilisateurModele() {
+
         this.httpJsonService = new HttpJsonService();
     }
 

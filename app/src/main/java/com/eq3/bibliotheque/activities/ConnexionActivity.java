@@ -1,5 +1,7 @@
 package com.eq3.bibliotheque.activities;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "activity_login";
+    private static final String TAG = "ConnexionActivity";
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button loginButton;
@@ -31,7 +33,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
 
-        loginPresentateur = new ConnexionPresentateur(new UtilisateurModele(),this);
+        loginPresentateur = new ConnexionPresentateur(new UtilisateurModele(), this);
         loginPresentateur.loadUsers();
 
         loginButton.setOnClickListener(this);
@@ -48,20 +50,16 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
 
     public void showLoginSuccess(boolean isAdmin, Utilisateur utilisateur) {
         if (isAdmin) {
-
             Toast.makeText(this, "Connexion administrateur réussie", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(ConnexionActivity.this, MenuAdmin.class);
             intent.putExtra("utilisateur", utilisateur);
             startActivity(intent);
-        }
-        else {
-
+        } else {
             Toast.makeText(this, "Connexion client réussie", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(ConnexionActivity.this, ListeLivresActivity.class);
             intent.putExtra("utilisateur", utilisateur);
             startActivity(intent);
         }
-
         finish();
     }
 

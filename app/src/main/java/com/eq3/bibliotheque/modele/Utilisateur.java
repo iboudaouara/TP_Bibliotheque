@@ -9,13 +9,10 @@ import java.io.Serializable;
  *
  */
 public class Utilisateur implements Serializable {
-
-
     private String compte;
     private String nom;
     private String prenom;
     private String id;
-    //private String motDePasse;
     public static final String MDP_UTILISATEUR = "mdp123";
 
     /**
@@ -23,8 +20,6 @@ public class Utilisateur implements Serializable {
      */
     public Utilisateur() {
 
-        // Définir le mot de passe par défaut pour tous les utilisateurs
-       // this.motDePasse = MDP_UTILISATEUR;
     }
 
     /**
@@ -36,11 +31,11 @@ public class Utilisateur implements Serializable {
      * @param id Identifiant unique de l'utilisateur.
      */
     public Utilisateur(String compte, String nom, String prenom, String id) {
+
         this.compte = compte;
         this.nom = nom;
         this.prenom = prenom;
         this.id = id;
-        //this.motDePasse = MDP_UTILISATEUR;
     }
 
     /**
@@ -121,9 +116,5 @@ public class Utilisateur implements Serializable {
         return MDP_UTILISATEUR;
     }
 
-    /*public void setMotDePasse(String motDePasse) {
-
-        this.motDePasse = motDePasse;
-    }*/
 
 }
