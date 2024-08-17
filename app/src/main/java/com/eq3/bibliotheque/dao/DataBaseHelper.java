@@ -26,8 +26,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Helper pour gérer la base de données SQLite de l'application.
- * Crée et met à jour la base de données en fonction des versions.
+ * Classe d'aide pour la gestion de la base de données SQLite de l'application.
+ * Cette classe crée, met à jour et gère le schéma de la base de données et les opérations associées.
  */
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -44,6 +44,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private HttpJsonService httpJsonService;
     private Activity activity;
 
+    /**
+     * Constructeur de DataBaseHelper.
+     * Initialise l'aide de base de données avec le contexte de l'activité donné.
+     *
+     * @param activity Le contexte de l'activité pour les mises à jour de l'interface utilisateur.
+     */
     public DataBaseHelper(Activity activity) {
         super(activity, DATABASE_NAME, null, DATABASE_VERSION);
         this.activity = activity;
@@ -53,23 +59,31 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // Crée la table 'favoris' pour stocker les livres favoris des utilisateurs
         String createFavorisTable = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT)",
                 TABLE_FAVORIS, COLUMN_ID, COLUMN_UTILISATEUR_ID, COLUMN_LIVRE_ID);
         db.execSQL(createFavorisTable);
 
+        // Crée la table 'evaluations' pour stocker les évaluations des livres par les utilisateurs
         String createEvaluationsTable = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s FLOAT)",
                 TABLE_EVALUATIONS, COLUMN_ID, COLUMN_UTILISATEUR_ID, COLUMN_LIVRE_ID, COLUMN_EVALUATION);
         db.execSQL(createEvaluationsTable);
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // Supprime les tables existantes et les recrée pour gérer les mises à jour du schéma
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FAVORIS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EVALUATIONS);
         onCreate(db);
     }
 
+    /**
+     * Ajoute un livre aux favoris de l'utilisateur.
+     *
+     * @param livreId      L'ID du livre à ajouter.
+     * @param utilisateurId L'ID de l'utilisateur qui ajoute le livre.
+     */
     public void ajouterFavori(String livreId, String utilisateurId) {
         executorService.execute(() -> {
             SQLiteDatabase db = this.getWritableDatabase();
@@ -81,6 +95,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         });
     }
 
+    /**
+     * Supprime un livre des favoris de l'utilisateur.
+     *
+     * @param livreId      L'ID du livre à supprimer.
+     * @param utilisateurId L'ID de l'utilisateur qui supprime le livre.
+     */
     public void supprimerFavori(String livreId, String utilisateurId) {
         executorService.execute(() -> {
             SQLiteDatabase db = this.getWritableDatabase();
@@ -90,6 +110,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         });
     }
 
+    /**
+     * Vérifie si un livre est marqué comme favori par l'utilisateur.
+     *
+     * @param livreId      L'ID du livre à vérifier.
+     * @param utilisateurId L'ID de l'utilisateur.
+     * @return True si le livre est un favori, sinon false.
+     */
     public boolean estFavori(String livreId, String utilisateurId) {
         final boolean[] isFavori = {false};
         executorService.execute(() -> {
@@ -103,14 +130,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return isFavori[0];
     }
 
+    /**
+     * Interface de rappel pour le chargement des livres favoris.
+     */
     public interface FavorisCallback {
         void onFavorisLoaded(List<Livre> favoris);
     }
 
+    /**
+     * Récupère la liste des livres favoris d'un utilisateur.
+     *
+     * @param utilisateurId L'ID de l'utilisateur.
+     * @param callback      Le rappel pour gérer les favoris chargés.
+     */
     public void getFavoris(String utilisateurId, FavorisCallback callback) {
-
         executorService.execute(() -> {
-
             List<Livre> favoris = new ArrayList<>();
             SQLiteDatabase db = this.getReadableDatabase();
             String query = "SELECT " + COLUMN_LIVRE_ID + " FROM " + TABLE_FAVORIS + " WHERE " + COLUMN_UTILISATEUR_ID + " = ?";
@@ -129,18 +163,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     } while (cursor.moveToNext());
                 }
             } catch (IllegalArgumentException e) {
-                e.printStackTrace(); // Traitez l'exception si la colonne est manquante
+                e.printStackTrace(); // Gère l'exception si la colonne est manquante
             } finally {
                 cursor.close();
                 db.close();
             }
 
-            // Utilisation de runOnUiThread pour mettre à jour l'interface utilisateur
+            // Met à jour l'interface utilisateur avec les favoris chargés
             activity.runOnUiThread(() -> callback.onFavorisLoaded(favoris));
         });
     }
 
-
+    /**
+     * Récupère les détails d'un livre par son ID depuis le serveur distant.
+     *
+     * @param livreId L'ID du livre à récupérer.
+     * @return Les détails du livre ou null si non trouvé.
+     */
     private Livre getLivreDetails(String livreId) {
         Future<Livre> future = executorService.submit(() -> {
             try {
@@ -166,6 +205,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    /**
+     * Récupère le score d'évaluation d'un livre par un utilisateur.
+     *
+     * @param livreId      L'ID du livre.
+     * @param utilisateurId L'ID de l'utilisateur.
+     * @return Le score d'évaluation du livre par l'utilisateur.
+     */
     public float getEvaluationUtilisateur(String livreId, String utilisateurId) {
         float evaluation = 0;
         SQLiteDatabase db = this.getReadableDatabase(); // Ouvre la base de données
@@ -181,7 +227,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             Log.e("DataBaseHelper", "Erreur lors de l'accès à la base de données", e);
         } finally {
             if (cursor != null) {
-                cursor.close(); // Assurez-vous de fermer le curseur
+                cursor.close(); // Assure la fermeture du curseur
             }
             db.close(); // Ferme la base de données
         }
@@ -189,7 +235,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return evaluation;
     }
 
-
+    /**
+     * Sauvegarde ou met à jour l'évaluation d'un livre par un utilisateur.
+     *
+     * @param livreId      L'ID du livre.
+     * @param utilisateurId L'ID de l'utilisateur.
+     * @param evaluation   Le score d'évaluation à sauvegarder.
+     * @return True si l'opération a réussi, sinon false.
+     */
     public boolean saveEvaluationUtilisateur(String livreId, String utilisateurId, float evaluation) {
         Future<Boolean> future = executorService.submit(() -> {
             SQLiteDatabase db = this.getWritableDatabase();

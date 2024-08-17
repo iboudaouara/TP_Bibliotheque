@@ -19,6 +19,10 @@ import com.eq3.bibliotheque.presentateur.ListeLivresPresentateur;
 
 import java.util.ArrayList;
 
+/**
+ * Activity qui affiche la liste des livres disponibles.
+ * Permet à l'utilisateur de marquer des livres comme favoris et de consulter leurs détails.
+ */
 public class ListeLivresActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ListView listeLivresView;
@@ -31,8 +35,16 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
     private static final String TAG = "ListeLivresActivity";
     private static final int CODE_REQUETE_DETAIL_LIVRE = 1;
 
+    /**
+     * Méthode appelée lors de la création de l'activité.
+     * Initialise les composants de l'interface utilisateur, récupère l'utilisateur connecté,
+     * et configure les listeners pour les interactions utilisateur.
+     *
+     * @param savedInstanceState Contient l'état précédemment sauvegardé de l'activité, si disponible.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_livre);
 
@@ -60,6 +72,7 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
             startActivityForResult(intent, CODE_REQUETE_DETAIL_LIVRE);
         });
 
+        // Charger la liste des livres
         livresPresentateur.fetchBooks();
 
         livreAdaptateur.setOnStarClickListener((livre, position) -> {
@@ -72,6 +85,12 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
+    /**
+     * Gère les clics sur les boutons Retour et Favoris.
+     * Redirige l'utilisateur vers l'activité Connexion ou Favoris selon le bouton cliqué.
+     *
+     * @param v Vue sur laquelle l'utilisateur a cliqué.
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnRetour_ListLivre) {
@@ -85,21 +104,41 @@ public class ListeLivresActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    /**
+     * Met à jour la liste des livres affichée dans l'activité.
+     *
+     * @param livres Liste des livres à afficher.
+     */
     public void updateBookList(ArrayList<Livre> livres) {
         listeLivres.clear();
         listeLivres.addAll(livres);
         livreAdaptateur.notifyDataSetChanged();
     }
 
+    /**
+     * Affiche un message d'erreur dans les logs en cas de problème.
+     *
+     * @param message Message d'erreur à afficher.
+     */
     public void showError(String message) {
 
         android.util.Log.e(TAG, message);
     }
 
+    /**
+     * Méthode appelée lorsque l'activité de détail de livre retourne un résultat.
+     * Rafraîchit la liste des livres après que l'utilisateur a consulté les détails d'un livre.
+     *
+     * @param requestCode Code de la requête utilisée pour démarrer l'activité de détail.
+     * @param resultCode  Code de résultat retourné par l'activité de détail.
+     * @param data        Intent contenant les données retournées par l'activité de détail.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CODE_REQUETE_DETAIL_LIVRE && resultCode == RESULT_OK) {
+
             livresPresentateur.fetchBooks();
         }
     }

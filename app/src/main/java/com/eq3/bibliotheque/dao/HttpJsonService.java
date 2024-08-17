@@ -26,14 +26,12 @@ import okhttp3.ResponseBody;
 /**
  * Service pour interagir avec le serveur JSON via des requêtes HTTP.
  * Permet de récupérer, ajouter et supprimer des livres et obtenir des informations sur les comptes utilisateurs.
- *
  */
 public class HttpJsonService {
 
-    private final String URL_POINT_ENTREE = "http://10.0.2.2:3000";
-    // Valeurs constantes à utiliser pour générer un ID aléatoire pour chaque livre
-    private static final String CHARACTERS = "0123456789abcdef";
-    private static final SecureRandom RANDOM = new SecureRandom(); // Création de l'instance SecureRandom
+    private final String URL_POINT_ENTREE = "http://10.0.2.2:3000"; // URL du serveur local
+    private static final String CHARACTERS = "0123456789abcdef"; // Caractères pour générer un ID aléatoire
+    private static final SecureRandom RANDOM = new SecureRandom(); // Générateur aléatoire sécurisé
 
     /**
      * Récupère la liste des livres depuis le serveur JSON.
@@ -44,7 +42,6 @@ public class HttpJsonService {
      */
     public List<Livre> getLivres() throws IOException, JSONException {
 
-        // Création client HTTP
         OkHttpClient okHttpClient = new OkHttpClient();
 
         Request request = new Request.Builder()
@@ -58,8 +55,6 @@ public class HttpJsonService {
 
         Log.d("HttpJsonService", "Response code: " + response.code());
         Log.d("HttpJsonService", "Response body: " + jsonStr);
-
-        Log.d("HttpJsonService:getLivres", jsonStr);
 
         if (jsonStr.length() > 0) {
             ObjectMapper mapper = new ObjectMapper();
@@ -85,7 +80,6 @@ public class HttpJsonService {
      */
     public boolean supprimerLivre(Livre livre) throws IOException, JSONException {
 
-        // Création client HTTP
         OkHttpClient okHttpClient = new OkHttpClient();
 
         Request request = new Request.Builder()
@@ -108,7 +102,6 @@ public class HttpJsonService {
      */
     public boolean ajouterLivre(Livre livre) throws IOException, JSONException {
 
-        // Création client HTTP
         OkHttpClient okHttpClient = new OkHttpClient();
 
         String id = genereIdAleatoire(4);
@@ -124,7 +117,6 @@ public class HttpJsonService {
         obj.put("appreciation_moyenne", livre.getAppreciationMoyenne());
         obj.put("nombre_appreciations", livre.getNombreAppreciations());
 
-        // Type de contenu de la requête
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         RequestBody corpsRequete = RequestBody.create(obj.toString(), JSON);
 
@@ -162,7 +154,6 @@ public class HttpJsonService {
      */
     public List<Utilisateur> getComptes() throws IOException, JSONException {
 
-        // Création client HTTP
         OkHttpClient okHttpClient = new OkHttpClient();
 
         Request request = new Request.Builder()
@@ -187,10 +178,17 @@ public class HttpJsonService {
         return null;
     }
 
+    /**
+     * Met à jour un livre sur le serveur JSON.
+     *
+     * @param livre L'objet Livre à mettre à jour.
+     * @return true si la mise à jour est réussie, false sinon.
+     * @throws IOException En cas d'erreur de communication avec le serveur.
+     * @throws JSONException En cas d'erreur de traitement JSON.
+     */
     public boolean updateLivre(Livre livre) throws IOException, JSONException {
-        String url = "http://10.0.2.2:3000/livres/" + livre.getId();
+        String url = URL_POINT_ENTREE + "/livres/" + livre.getId();
 
-        // Création du JSON pour le livre
         JSONObject livreJson = new JSONObject();
         livreJson.put("titre", livre.getTitre());
         livreJson.put("auteur", livre.getAuteur());
@@ -201,22 +199,16 @@ public class HttpJsonService {
         livreJson.put("appreciation_moyenne", livre.getAppreciationMoyenne());
         livreJson.put("nombre_appreciations", livre.getNombreAppreciations());
 
-        // Type de contenu de la requête
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-
-        // Création du corps de la requête
         RequestBody body = RequestBody.create(livreJson.toString(), JSON);
 
-        // Création de l'instance OkHttpClient
         OkHttpClient client = new OkHttpClient();
 
-        // Construction de la requête PUT
         Request request = new Request.Builder()
                 .url(url)
                 .put(body)
                 .build();
 
-        // Exécution de la requête et traitement de la réponse
         try (Response response = client.newCall(request).execute()) {
             return response.isSuccessful();
         }
@@ -231,13 +223,11 @@ public class HttpJsonService {
      */
     public List<Livre> getLivresFavoris() throws IOException, JSONException {
 
-        // Récupérer tous les livres
         List<Livre> tousLesLivres = getLivres();
         if (tousLesLivres == null) {
             return null;
         }
 
-        // Filtrer les livres pour ne garder que ceux avec une note supérieure à 4
         List<Livre> livresFavoris = new ArrayList<>();
         for (Livre livre : tousLesLivres) {
             if (livre.getAppreciationMoyenne() > 4) {
@@ -247,6 +237,5 @@ public class HttpJsonService {
 
         return livresFavoris;
     }
-
 
 }

@@ -34,10 +34,18 @@ public class LivreAdaptateur extends ArrayAdapter<Livre> {
         this.livres = livres;
     }
 
+    /**
+     * Interface pour écouter les clics sur l'icône de notation (étoile).
+     */
     public interface OnStarClickListener {
         void onStarClick(Livre livre, int position);
     }
 
+    /**
+     * Définit le listener pour les clics sur l'icône de notation (étoile).
+     *
+     * @param listener Listener pour les clics sur l'étoile.
+     */
     public void setOnStarClickListener(OnStarClickListener listener) {
         this.starClickListener = listener;
     }
@@ -75,13 +83,13 @@ public class LivreAdaptateur extends ArrayAdapter<Livre> {
             dateTextView.setText(livre.getDatePublication());
             appreciationTextView.setText(String.format("%.1f", livre.getAppreciationMoyenne()));
 
+            // Ajout d'un listener pour gérer les clics sur le TextView de notation.
             appreciationTextView.setOnClickListener(v -> {
                 if (starClickListener != null) {
                     starClickListener.onStarClick(livre, position);
                 }
             });
 
-            // TODO: Ajouter une méthode pour que le texte change de couleur lorsque la souris passe dessus ?
         }
 
         return vue;

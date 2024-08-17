@@ -18,11 +18,13 @@ import com.eq3.bibliotheque.dao.ComptesDAO;
 import com.eq3.bibliotheque.presentateur.ListeClientsPresentateur;
 
 public class ListeClientsActivity extends AppCompatActivity
-                                    implements View.OnClickListener{
+        implements View.OnClickListener{
 
+    // Menu
     private ListView lvListeClients;
     private Button btnRetour;
 
+    // Présentateur et DAO
     private ListeClientsPresentateur presentateur;
     private ComptesDAO comptesDAO;
 
@@ -31,13 +33,17 @@ public class ListeClientsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_clients);
 
+        // Récupérer les vues
         lvListeClients = findViewById(R.id.lvListeClients);
         btnRetour = findViewById(R.id.btnRetourListeClients);
 
+        // Ajouter un écouteur pour le bouton de retour
         btnRetour.setOnClickListener(this);
 
+        // Instancier le présentateur
         presentateur = new ListeClientsPresentateur(ListeClientsActivity.this, new ComptesDAO());
 
+        // Utiliser le présentateur pour charger les clients dans la liste
         presentateur.chargerComptes(lvListeClients);
 
     }
@@ -45,6 +51,7 @@ public class ListeClientsActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
 
+        // Pour revenir au menu Admin
         if (v == btnRetour) {
             Intent intention = new Intent (this, MenuAdmin.class);
             startActivity(intention);
